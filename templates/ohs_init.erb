@@ -1,0 +1,32 @@
+#!/bin/sh
+# Startup script for all opmn components
+#
+# chkconfig: 345 92 06 
+#
+# description:       oracle-validated runs to modify boot parameters
+#
+# Source function library.
+. /etc/init.d/functions
+
+ORA_INSTANCE=/u01/app/oracle/middleware/ohs/instances/<%= name %>
+ORA_OWNER=oracle
+
+case "$1" in
+'start')
+#Start all opmn components
+su - $ORA_OWNER -c "$ORA_INSTANCE/bin/opmnctl startall"
+;;
+'stop')
+#stop all opmn components
+su - $ORA_OWNER -c "$ORA_INSTANCE/bin/opmnctl stopall"
+;;
+'restart')
+#stop then start
+su - $ORA_OWNER -c "$ORA_INSTANCE/bin/opmnctl stopall"
+su - $ORA_OWNER -c "$ORA_INSTANCE/bin/opmnctl startall"
+;;
+'status')
+#stop all opmn components
+su - $ORA_OWNER -c "$ORA_INSTANCE/bin/opmnctl status"
+esac
+exit $RETVAL

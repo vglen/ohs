@@ -1,0 +1,23 @@
+# NOTE : This is a template to configure mod_weblogic. 
+
+LoadModule weblogic_module   "${ORACLE_HOME}/ohs/modules/mod_wl_ohs.so"
+
+# This empty block is needed to save mod_wl related configuration from EM to this file when changes are made at the Base Virtual Host Level
+<IfModule weblogic_module>
+      WebLogicHost <%= @wl_host %>
+      WebLogicPort <%= @wl_port %>
+      Debug OFF
+      WLLogFile <%= wl_log_file %>
+#      MatchExpression *.jsp
+#      SecureProxy ON
+#      WLProxySSL ON
+#      RequestHeader set WL-Proxy-SSL true
+#      WlSSLWallet <%= @ohsint_base %>/<%= @name %>/config/OHS/OHS1/wallet
+</IfModule>
+
+<Location /<%= @wl_url %>>
+      SetHandler weblogic-handler
+#      PathTrim /weblogic
+#      ErrorPage  http:/WEBLOGIC_HOME:WEBLOGIC_PORT/
+  </Location>
+

@@ -1,0 +1,4 @@
+#default class
+class ohs {
+
+}

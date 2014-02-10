@@ -1,0 +1,31 @@
+LoadModule osso_module "${ORACLE_HOME}/ohs/modules/mod_osso.so"
+
+<IfModule osso_module>
+OssoConfigFile <%= @ohsint_base %>/<%= @name %>/config/OHS/OHS1/<%= @osso_file %>
+OssoIdleTimeout off
+OssoIpCheck off
+#OssoRedirectByForm off
+#OssoSecureCookies on
+#OssoProtectedOnly on
+#OssoSecureCookies on
+#MAKE SURE OssoSendCacheHeaders is set, or ADF won't work right
+OssoSendCacheHeaders off
+#OssoHttpsFrontend on
+#UseWebCacheIp on
+
+<Location /<%= @wl_url %>>
+ require valid-user
+ AuthType Osso
+</Location>
+
+</IfModule>
+
+#
+# If you would like to have short hostnames redirected to
+# fully qualified hostnames to allow clients that need
+# authentication via mod_osso to be able to enter short
+# hostnames into their browsers uncomment out the following
+# lines
+#
+#PerlModule Apache::ShortHostnameRedirect
+#PerlHeaderParserHandler Apache::ShortHostnameRedirect
