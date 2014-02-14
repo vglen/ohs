@@ -1,0 +1,120 @@
+<!doctype html>
+<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
+<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
+  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script type="text/javascript" src="javascripts/script.js"></script>
+
+  <title>OHS</title>
+  <meta name="description" content="">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <header>
+      <h1 class="title">OHS</h1>
+    </header>
+    <div id="container">
+      <p class="tagline"></p>
+      <div id="main" role="main">
+        <div class="download-bar">
+        <div class="inner">
+          <a href="https://github.com/vglen/ohs/tarball/master" class="download-button tar"><span>Download</span></a>
+          <a href="https://github.com/vglen/ohs/zipball/master" class="download-button zip"><span>Download</span></a>
+          <a href="https://github.com/vglen/ohs" class="code">View OHS on GitHub</a>
+        </div>
+        <span class="blc"></span><span class="trc"></span>
+        </div>
+        <article class="markdown-body">
+          <h1>
+<a name="ohs" class="anchor" href="#ohs"><span class="octicon octicon-link"></span></a>OHS</h1>
+
+<p>A puppet module for installing OHS. You can install a single instance or multiple ones utilizing hiera.</p>
+
+<h2>
+<a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes</h2>
+
+<p>This is the inital release. I left out the opmn.xml.erb file, but you can put one in and utilize the following values in hiera:</p>
+
+<pre><code>local_port
+remote_port
+
+&lt;port local="&lt;%= @local_port %&gt;" remote="&lt;%= @remote_port %&gt;"/&gt;
+</code></pre>
+
+<p>The default install will use 6700 and 6701. If you run the multiple instances or add an instance with the default one off, you will end up with port overlaps for opmn.</p>
+
+<p>This config is using OHS for OSSO and proxying down to a WebLogic Host, but can be altered to be used as a reverse proxy or something else entirely.</p>
+
+<h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<p>Hiera.
+Installation media. We use autofs and mount via the cwd in the exec.</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>An example of how to create mutliple instances via hiera:</p>
+
+<pre><code>ohs_instances:
+    instance1:
+        name: 'instance1'
+        port: '7798'
+        ssl_port: '8898'
+        proxy_port: '4498'
+        local_port: '6700'
+        remote_port: '6701'
+        wl_host: 'myhost.domain'
+        wl_port: '8701'
+        wl_log_file: '/DIR/tmp/weblogic.log'
+        wl_url: 'APP'
+        osso_file: 'host.osso.conf'
+    instance2:
+        name: 'instance2'
+        port: '7799'
+        ssl_port: '8899'
+        proxy_port: '4499'
+        local_port: '6702'
+        remote_port: '6703'
+        wl_host: 'myhost.domain'
+        wl_port: '8701'
+        wl_log_file: '/DIR/tmp/weblogic.log'
+        wl_url: 'APP'
+        osso_file: 'host.osso.conf'
+</code></pre>
+
+<p>Simply remove instance2 from hiera for a single config. This module will install the default instance which can be removed after or simply turned down with opmnctl.</p>
+        </article>
+      </div>
+    </div>
+    <footer>
+      <div class="owner">
+      <p><a href="https://github.com/vglen" class="avatar"><img src="https://2.gravatar.com/avatar/b778309e1e3cf8c5d4f2b276e06a8d75?d=https%3A%2F%2Fidenticons.github.com%2F21ac841b7aaa12d9797219381e8213a0.png&amp;r=x&amp;s=60" width="48" height="48"/></a> <a href="https://github.com/vglen">vglen</a> maintains <a href="https://github.com/vglen/ohs">OHS</a></p>
+
+
+      </div>
+      <div class="creds">
+        <small>This page generated using <a href="http://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
+      </div>
+    </footer>
+  </div>
+  <div class="current-section">
+    <a href="#top">Scroll to top</a>
+    <a href="https://github.com/vglen/ohs/tarball/master" class="tar">tar</a><a href="https://github.com/vglen/ohs/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
+    <p class="name"></p>
+  </div>
+
+  
+</body>
+</html>
