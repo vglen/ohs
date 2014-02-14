@@ -1,5 +1,5 @@
 name    'Vglen-ohs'
-version '0.1.0'
+version '0.1.1'
 source 'git://github.com/vglen/ohs.git'
 author 'Vglen'
 license 'Apache License 2.0'
