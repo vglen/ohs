@@ -16,7 +16,9 @@ This config is using OHS for OSSO and proxying down to a WebLogic Host, but can 
 
 ##Requirements
 Hiera.
-Installation media. We use autofs and mount via the cwd in the exec.
+Oracle license for OHS.
+Installation media from Oracle.
+We use autofs and mount via the cwd in the exec.
 
 ##Usage
 An example of how to create mutliple instances via hiera:
